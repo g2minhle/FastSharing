@@ -1,0 +1,10 @@
+#qrCodeFrame{    
+    border: none;
+    height:200;
+    width:300;    
+}
+
+#lb_Code{
+    font-weight: bold;
+    font-size:  15;
+}

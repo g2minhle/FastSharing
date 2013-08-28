@@ -1,6 +1,8 @@
 package com.fastsharing.structure;
 
+import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,6 +27,12 @@ public class TheFile {
 	@Column(name = "FS_THE_FILE")
 	private Blob theFile;
 
+	public TheFile() {
+		this.fileName = "";
+		this.theFile = null;
+		this.uploadTime = null;
+	}
+
 	public TheFile(String fileName, Blob theFile) {
 		this.fileName = fileName;
 		this.theFile = theFile;
@@ -33,6 +41,14 @@ public class TheFile {
 
 	public int getFileID() {
 		return fileID;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public InputStream getFileContent() throws SQLException {
+		return theFile.getBinaryStream();
 	}
 
 }

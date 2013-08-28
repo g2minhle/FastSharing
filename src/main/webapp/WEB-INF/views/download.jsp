@@ -14,14 +14,18 @@
         </div>	   
         <div class="span12" id="div_PleaseWait">
         	<img src="${pageContext.request.contextPath}/img/circle.gif" />
-        </div> 
+        </div>
+        <div class="span12" id="div_NoFile">
+        	<span class="lead">There is no file having that code</span>
+        </div>  
         <div id="div_GetFile">
             <p>
                 <span class="lead" id="lb_Label">The code of the current file is:</span>
-                <span class="lead" id="txt_FileCode">file code</span>
+                <span class="lead" id="txt_FileCode"></span>
             </p>
             <p>
-                <a class="btn btn-success txt_FileName" id="txt_FileName" href="">file name</a>     
+                <a id="txt_FileName" href=""></a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success txt_FileName" id="cmd_Download" href="">Download  <i class="icon-download-alt"></i></a>     
             </p>	
         </div>
 	</div>	

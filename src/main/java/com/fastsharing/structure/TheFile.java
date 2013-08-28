@@ -30,4 +30,9 @@ public class TheFile {
 		this.theFile = theFile;
 		this.uploadTime = new Date();
 	}
+
+	public int getFileID() {
+		return fileID;
+	}
+
 }

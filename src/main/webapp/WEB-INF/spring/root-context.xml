@@ -2,7 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
+	<bean id="db-loader-task" class="com.fastsharing.ScheduledCleanUpTask">
+	</bean>
+
+	<bean id="time-unit" class="java.util.concurrent.TimeUnit"
+		factory-method="valueOf">
+		<constructor-arg>
+			<value>DAYS</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="db-timer-task"
+		class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">
+		<property name="period" value="1" />
+		<property name="timeUnit">
+			<ref bean="time-unit" />
+		</property>
+		<property name="runnable" ref="db-loader-task" />
+	</bean>
+
+	<bean id="db-timer-factory"
+		class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">
+		<property name="scheduledExecutorTasks">
+			<list>
+				<ref bean="db-timer-task" />
+			</list>
+		</property>
+	</bean>
+
 </beans>

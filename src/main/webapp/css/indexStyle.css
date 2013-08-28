@@ -42,3 +42,8 @@ body {
 .hidden{
 	visibility: hidden;
 }
+
+.footer{
+	position: fixed;
+	top : 70%;
+}

@@ -19,7 +19,7 @@
 				<div class="span12">
 					<jsp:doBody/>				
 				</div>			
-				<div class = "span12">					
+				<div class = "span12 footer">					
 					<a class="btn btn-danger btn-large cmd_SubmitButton" href="${pageContext.request.contextPath}<%=RequestMap.UPLOAD_MAP%>">Upload file</a>&nbsp;&nbsp;&nbsp;			
 					<a class="btn btn-info btn-large cmd_SubmitButton" href="${pageContext.request.contextPath}<%=RequestMap.DOWNLOAD_MAP%>">Download file</a> &nbsp;&nbsp;&nbsp;
 					<a class="btn btn-success btn-large cmd_SubmitButton" href="${pageContext.request.contextPath}<%=RequestMap.HOW_TO_USE_MAP%>">How to use</a> &nbsp;&nbsp;&nbsp;

@@ -4,9 +4,9 @@
 	<head>
 		<title>Fast sharing</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/indexStyle.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/views/${fileName}.css" />
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery.min.js"></script>		
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/${fileName}.js"></script>
 	</head>

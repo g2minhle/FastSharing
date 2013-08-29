@@ -24,12 +24,25 @@ public class FileDB {
 	private static int initialUserID;
 	/** The session factory */
 	private static SessionFactory factory;
+	/** The total size of the database */
+	private static long totalSize;
+	/** The file size limit */
+	private static long MAX_SIZE = 100000000;
+	/** The memory limit */
+	private static long MAX_CAP = 1000000000;
+	/** Constant indicate there is some problem */
+	public static int ERROR_ERROR = -1;
+	/** Constant indicate the file is too big */
+	public static int ERROR_FILE_TOO_BIG = -2;
+	/** Constant indicate there is no more memory */
+	public static int ERROR_OUT_OF_MEMORY = -3;
 
 	/**
 	 * Initialize database
 	 */
 	public static void initDB() {
 		initialUserID = 1234;
+		totalSize = 0;
 		ServiceRegistry serviceRegistry;
 		Configuration configuration = new Configuration();
 		configuration.configure();
@@ -57,11 +70,18 @@ public class FileDB {
 	 * @return The ID of the file
 	 */
 	public static int saveFile(TheFile theFile) {
+		if (theFile.getFileSize() > MAX_SIZE) {
+			return ERROR_FILE_TOO_BIG;
+		}
+		if (theFile.getFileSize() + totalSize > MAX_CAP) {
+			return ERROR_OUT_OF_MEMORY;
+		}
 		boolean notDone = true;
 		while (notDone) {
 			try {
 				Session sec = createSession();
 				sec.save(theFile);
+				totalSize += theFile.getFileSize();
 				closeSession(sec);
 				notDone = false;
 			} catch (Exception e) {
@@ -208,6 +228,7 @@ public class FileDB {
 				timeDifferent = currentTime.getTime() - fileTime.getTime();
 				timeDifferent = timeDifferent / (60 * 60 * 1000 * 24);
 				if (timeDifferent > 1) {
+					totalSize -= file.getFileSize();
 					sec.delete(file);
 				}
 			}

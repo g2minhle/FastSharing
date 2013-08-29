@@ -10,8 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * The file entity contains the file and meta information
@@ -40,6 +42,10 @@ public class TheFile {
 	@Column(name = "FS_THE_FILE")
 	private Blob theFile;
 
+	/** The file size */
+	@Column(name = "FS_FILE_SIZE")
+	private long fileSize;
+
 	/**
 	 * A default generator for Hibernate database
 	 */
@@ -57,10 +63,15 @@ public class TheFile {
 	 * @param theFile
 	 *            The file content
 	 */
-	public TheFile(String fileName, Blob theFile) {
-		this.fileName = fileName;
-		this.theFile = theFile;
-		this.uploadTime = new Date();
+	public TheFile(MultipartFile multipartFile) {
+		try {
+			this.uploadTime = new Date();
+			this.fileSize = multipartFile.getSize();
+			this.fileName = multipartFile.getOriginalFilename();
+			this.theFile = new SerialBlob(multipartFile.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -88,6 +99,15 @@ public class TheFile {
 	 */
 	public Date getUploadTime() {
 		return uploadTime;
+	}
+
+	/**
+	 * Get the upload time of the file
+	 * 
+	 * @return The upload time of the file
+	 */
+	public long getFileSize() {
+		return fileSize;
 	}
 
 	/**

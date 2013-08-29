@@ -1,9 +1,5 @@
 package com.fastsharing.controller;
 
-import java.sql.Blob;
-
-import javax.sql.rowset.serial.SerialBlob;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,12 +57,15 @@ public class UploadPages {
 		int fileIndex = -1;
 		String fileName = "";
 		try {
-			Blob fileContent;
 			MultipartFile multipartFile = uploadForm.getTheFile();
-			fileContent = new SerialBlob(multipartFile.getBytes());
-			fileName = multipartFile.getOriginalFilename();
-			TheFile theFile = new TheFile(fileName, fileContent);
+			TheFile theFile = new TheFile(multipartFile);
 			fileIndex = FileDB.saveFile(theFile);
+			if (fileIndex == FileDB.ERROR_FILE_TOO_BIG) {
+				return FilePath.TOO_BIG_FILE_PATH;
+			} else if (fileIndex == FileDB.ERROR_OUT_OF_MEMORY) {
+				return FilePath.OUT_OF_MEMORY_PATH;
+			}
+			fileName = theFile.getFileName();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

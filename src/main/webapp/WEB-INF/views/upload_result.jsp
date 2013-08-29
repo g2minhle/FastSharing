@@ -12,6 +12,6 @@
 	    <p>
 	        <span>The QR code of your file is:</span>
 	    </p>
-	    <img src="https://chart.googleapis.com/chart?chs200x200&cht=qr&chl${fileIndex}"/>
+	    <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${fileIndex}"/>
 	</div>  
 </l:layout>

@@ -12,8 +12,7 @@ public class ScheduledCleanUpTask implements Runnable {
 	 * Clean up old files in database
 	 */
 	public void run() {
-		// Clean up database
-		System.out.println("Cleaning up database");
+		FileDB.cleanUpOldFiles();
 	}
 
 }

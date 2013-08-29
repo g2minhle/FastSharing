@@ -1,6 +1,7 @@
 package com.fastsharing;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -184,5 +185,36 @@ public class FileDB {
 		}
 		closeSession(sec);
 		return theFile;
+	}
+
+	/**
+	 * Clean up all the old files in the database
+	 */
+	public static void cleanUpOldFiles() {
+		if (factory == null) {
+			return;
+		}
+		Session sec = createSession();
+		try {
+			Date fileTime;
+			long timeDifferent;
+			Date currentTime = new Date();
+			String sql = "from TheFile";
+			Query query = sec.createQuery(sql);
+			ArrayList<TheFile> result = new ArrayList<TheFile>();
+			result.addAll(query.list());
+			for (TheFile file : result) {
+				fileTime = file.getUploadTime();
+				timeDifferent = currentTime.getTime() - fileTime.getTime();
+				timeDifferent = timeDifferent / (60 * 60 * 1000 * 24);
+				if (timeDifferent > 1) {
+					sec.delete(file);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			closeSession(sec);
+		}
+		closeSession(sec);
 	}
 }

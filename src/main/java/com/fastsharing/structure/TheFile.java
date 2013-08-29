@@ -82,6 +82,15 @@ public class TheFile {
 	}
 
 	/**
+	 * Get the upload time of the file
+	 * 
+	 * @return The upload time of the file
+	 */
+	public Date getUploadTime() {
+		return uploadTime;
+	}
+
+	/**
 	 * Get input stream from file content
 	 * 
 	 * @return The input stream from file content

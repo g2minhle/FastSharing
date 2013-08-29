@@ -21,9 +21,9 @@
 			<version>4.2.1.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.2.145</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.22</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-sql</groupId>

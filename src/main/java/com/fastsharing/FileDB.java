@@ -11,11 +11,22 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.fastsharing.structure.TheFile;
 
+/**
+ * The file database's API
+ * 
+ * @author g2minhle
+ * 
+ */
 public class FileDB {
 
+	/** The initial user ID to avoid giving small ID (ie: 1,2,3) */
 	private static int initialUserID;
+	/** The session factory */
 	private static SessionFactory factory;
 
+	/**
+	 * Initialize database
+	 */
 	public static void initDB() {
 		initialUserID = 1234;
 		ServiceRegistry serviceRegistry;
@@ -27,6 +38,9 @@ public class FileDB {
 
 	}
 
+	/**
+	 * Shutdown and clean up the database
+	 */
 	public static void cleanDB() {
 		if (factory != null) {
 			factory.close();
@@ -34,6 +48,13 @@ public class FileDB {
 		factory = null;
 	}
 
+	/**
+	 * Save a given file to database
+	 * 
+	 * @param theFile
+	 *            The file
+	 * @return The ID of the file
+	 */
 	public static int saveFile(TheFile theFile) {
 		boolean notDone = true;
 		while (notDone) {
@@ -47,15 +68,28 @@ public class FileDB {
 				e.printStackTrace();
 			}
 		}
+		// Convert from database file ID to (user, normal) file ID to avoid
+		// giving small ID (ie: 1,2,3)
 		return theFile.getFileID() + initialUserID;
 	}
 
+	/**
+	 * Create a new session
+	 * 
+	 * @return The new session
+	 */
 	private static Session createSession() {
 		Session sec = factory.openSession();
 		sec.beginTransaction();
 		return sec;
 	}
 
+	/**
+	 * Close a session
+	 * 
+	 * @param sec
+	 *            The session need to be closed
+	 */
 	private static void closeSession(Session sec) {
 		if (sec != null) {
 			sec.getTransaction().commit();
@@ -63,6 +97,13 @@ public class FileDB {
 		}
 	}
 
+	/**
+	 * Convert (user, normal) file ID to database file ID
+	 * 
+	 * @param fileID
+	 *            The file ID
+	 * @return The database file ID
+	 */
 	private static int processID(String fileID) {
 		try {
 			return Integer.parseInt(fileID) - initialUserID;
@@ -72,6 +113,13 @@ public class FileDB {
 		}
 	}
 
+	/**
+	 * Check if there is any file in the database that has the given ID
+	 * 
+	 * @param fileID
+	 *            The file ID
+	 * @return True if and only if the database contains file with given ID
+	 */
 	public static boolean hasID(String fileID) {
 		int fileCount = 0;
 		Session sec = createSession();
@@ -88,6 +136,14 @@ public class FileDB {
 		return (fileCount > 0);
 	}
 
+	/**
+	 * Get the name of the file with given file ID
+	 * 
+	 * @param fileID
+	 *            The file ID
+	 * @return The name of the file with given file ID, or empty string if there
+	 *         is no file with such file ID
+	 */
 	public static String getFileName(String fileID) {
 		String fileName;
 		Session sec = createSession();
@@ -104,6 +160,13 @@ public class FileDB {
 		return fileName;
 	}
 
+	/**
+	 * Get the file object with the give file ID out of the database
+	 * 
+	 * @param fileID
+	 *            The file ID
+	 * @return The file object
+	 */
 	public static TheFile getFile(String fileID) {
 		TheFile theFile;
 		Session sec = createSession();

@@ -24,17 +24,34 @@ import com.fastsharing.config.RequestMap;
 import com.fastsharing.structure.TheFile;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the download page.
  */
 @Controller
 public class DownloadPages {
 
+	/**
+	 * Handles requests for the download page
+	 * 
+	 * @param model
+	 *            The model
+	 * @return The path to the page
+	 */
 	@RequestMapping(value = RequestMap.DOWNLOAD_MAP, method = RequestMethod.GET)
 	public String DOWNLOAD_MAP(Model model) {
 		model.addAttribute("fileName", FilePath.DOWNLOAD_PATH);
 		return FilePath.DOWNLOAD_PATH;
 	}
 
+	/**
+	 * Handles requests for checking existent of a file
+	 * 
+	 * @param fileIndex
+	 *            The file ID
+	 * @param request
+	 *            Http request
+	 * @param response
+	 *            Http response
+	 */
 	@RequestMapping(value = RequestMap.DOWNLOAD_MAP, method = RequestMethod.POST)
 	public @ResponseBody
 	void DOWNLOAD_MAP_POST(@RequestParam("fileIndex") String fileIndex,
@@ -54,8 +71,19 @@ public class DownloadPages {
 	}
 
 	@Autowired
+	/**	 */
 	ServletContext ServletContext;
 
+	/**
+	 * Handles requests for downloading the file
+	 * 
+	 * @param fileIndex
+	 *            The file ID
+	 * @param request
+	 *            Http request
+	 * @param response
+	 *            Http response
+	 */
 	@RequestMapping(value = RequestMap.DOWNLOAD_FILE_MAP, method = RequestMethod.GET)
 	public @ResponseBody
 	void DOWNLOAD_FILE_MAP(@PathVariable("fileIndex") String fileIndex,

@@ -1,7 +1,6 @@
 package com.fastsharing.controller;
 
 import java.sql.Blob;
-import java.util.Locale;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -19,22 +18,43 @@ import com.fastsharing.structure.FileUploadForm;
 import com.fastsharing.structure.TheFile;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for upload page
  */
 @Controller
 public class UploadPages {
 
+	/**
+	 * Redirect the home page to the upload page
+	 * 
+	 * @return Redirect request to the upload page
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String INDEX(Locale locale, Model model) {
+	public String INDEX() {
 		return "redirect:/upload/";
 	}
 
+	/**
+	 * Handles requests for upload page
+	 * 
+	 * @param model
+	 *            The model
+	 * @return The path to the page
+	 */
 	@RequestMapping(value = RequestMap.UPLOAD_MAP, method = RequestMethod.GET)
-	public String UPLOAD_MAP(Locale locale, Model model) {
+	public String UPLOAD_MAP(Model model) {
 		model.addAttribute("fileName", FilePath.UPLOAD_PATH);
 		return FilePath.UPLOAD_PATH;
 	}
 
+	/**
+	 * Save an uploaded file to database
+	 * 
+	 * @param uploadForm
+	 *            The upload From
+	 * @param model
+	 *            The model
+	 * @return The path to the page
+	 */
 	@RequestMapping(value = RequestMap.UPLOAD_MAP, method = RequestMethod.POST)
 	public String UPLOAD_MAP_POST(
 			@ModelAttribute("uploadForm") FileUploadForm uploadForm, Model model) {

@@ -29,13 +29,15 @@ public class FileDB {
 	/** The file size limit */
 	private static long MAX_SIZE = 100000000;
 	/** The memory limit */
-	private static long MAX_CAP = 1000000000;
+	private static long MAX_CAP = 300000000;
 	/** Constant indicate there is some problem */
 	public static int ERROR_ERROR = -1;
 	/** Constant indicate the file is too big */
 	public static int ERROR_FILE_TOO_BIG = -2;
 	/** Constant indicate there is no more memory */
 	public static int ERROR_OUT_OF_MEMORY = -3;
+	/** Constant indicate there is no file is selected */
+	public static int ERROR_NO_FILE_SELECTED = -4;
 
 	/**
 	 * Initialize database
@@ -75,6 +77,9 @@ public class FileDB {
 		}
 		if (theFile.getFileSize() + totalSize > MAX_CAP) {
 			return ERROR_OUT_OF_MEMORY;
+		}
+		if (theFile.getFileName().compareTo("") == 0) {
+			return ERROR_NO_FILE_SELECTED;
 		}
 		boolean notDone = true;
 		while (notDone) {

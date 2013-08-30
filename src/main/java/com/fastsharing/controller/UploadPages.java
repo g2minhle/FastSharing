@@ -64,6 +64,8 @@ public class UploadPages {
 				return FilePath.TOO_BIG_FILE_PATH;
 			} else if (fileIndex == FileDB.ERROR_OUT_OF_MEMORY) {
 				return FilePath.OUT_OF_MEMORY_PATH;
+			} else if (fileIndex == FileDB.ERROR_NO_FILE_SELECTED) {
+				return FilePath.NO_FILE_SELECTED_PATH;
 			}
 			fileName = theFile.getFileName();
 		} catch (Exception e) {

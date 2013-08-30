@@ -18,7 +18,9 @@ public class FilePath {
 	/** The file path to about us page */
 	public static final String ABOUT_US_PATH = "about_us";
 	/** The file path to TOO_BIG_FILE error */
-	public static final String TOO_BIG_FILE_PATH = "too_big_file";
-	/** The file path to OUT_OF_MEMORY error */
-	public static final String OUT_OF_MEMORY_PATH = "out_of_memory";
+	public static final String TOO_BIG_FILE_PATH = "error/too_big_file";
+	/** The file path to OUT_OF_MEMORY error */	
+	public static final String OUT_OF_MEMORY_PATH = "error/out_of_memory";
+	/** The file path to NO_FILE_SELECTED error */
+	public static final String NO_FILE_SELECTED_PATH = "error/no_file_selected";
 }

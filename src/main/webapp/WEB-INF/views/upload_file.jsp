@@ -5,14 +5,13 @@
 		<div class="span12" id="sec_UpLoadForm">
 			<form:form name="frm_UpLoadForm" id="frm_UpLoadForm"
 				modelAttribute="uploadForm" enctype="multipart/form-data"
+				action="./"
 				method="post">
 				<input type="file" name="theFile" id="theFile" class="hide"
 					onchange="fileSelected()" />
-				<p>
-					<input class="btn btn-primary" type="button" value="Select File"
-						onclick="cmd_SelectFileOnClick()" /> <input
-						class="btn btn-primary" type="button" value="Start upload"
-						onclick="cmd_UploadOnClick()" />
+				<p>					 
+					<input class="btn btn-primary" type="button" value="Select File" onclick="cmd_SelectFileOnClick()" />
+					<input class="btn btn-primary" type="submit" value="Start upload"/>					
 				</p>
 				<span class="muted" id="txt_FileName">Please select file</span>
 			</form:form>

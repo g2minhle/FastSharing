@@ -17,20 +17,22 @@ function cmd_GetFileOnClick() {
 }
 
 function serverReply(reply) {
+	var var_contextPath = $("#var_contextPath").html();
 	$("#div_PleaseWait").hide();
 	if (reply == "NO_FILE") {
 		$("#div_NoFile").show();
 	} else {
-		
 		var reply = reply.split("~");
 		var fileName = reply[0];
 		var fileCode = reply[1];
 		$("#div_GetFile").show();
 		$("#txt_FileName").html(fileName);
 		$("#txt_FileCode").html(fileCode);
-		var link = "./" + fileCode + "/";
+		var link = "/" + fileCode + "/";
+		$("#txt_FileLink").attr("href", link);
+		$("#txt_FileLink").html(var_contextPath + link);
+		link = "." + fileCode;
 		$("#txt_FileName").attr("href", link);
 		$("#cmd_Download").attr("href", link);
 	}
 }
-

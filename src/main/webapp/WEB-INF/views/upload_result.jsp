@@ -4,11 +4,14 @@
 		<p>
 	        <span>File name:</span>
 	        <span><b>${fileName}</b></span>
-	    </p>	
+	    </p>
+	    <p>	        
+	        <a href="${pageContext.request.contextPath}/download/${fileIndex}/">${pageContext.request.contextPath}/download/${fileIndex}/</a>
+	    </p>		    
 	    <p>
 	        <span>The code of your file is:</span>
 	        <span><b>${fileIndex}</b></span>
-	    </p>        
+	    </p>    
 	    <p>
 	        <span>The QR code of your file is:</span>
 	    </p>

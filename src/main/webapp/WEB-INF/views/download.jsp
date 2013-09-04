@@ -24,9 +24,13 @@
                 <span class="lead" id="txt_FileCode"></span>
             </p>
             <p>
+            	<a id="txt_FileLink" href=""></a>
+            </p>
+            <p>
                 <a id="txt_FileName" href=""></a>&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-success txt_FileName" id="cmd_Download" href="">Download  <i class="icon-download-alt"></i></a>     
             </p>	
         </div>
-	</div>	
+	</div>
+	<span class="hide" id="var_contextPath">${pageContext.request.contextPath}</span>	
 </l:layout>

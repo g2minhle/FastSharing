@@ -18,7 +18,7 @@ import com.fastsharing.structure.TheFile;
  * @author g2minhle
  * 
  */
-public class FileDB 
+public class FileDB {
 
 	/** The initial user ID to avoid giving small ID (ie: 1,2,3) */
 	private static int initialUserID;

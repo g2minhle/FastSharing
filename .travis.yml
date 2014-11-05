@@ -1,1 +1,8 @@
 language: java
+deploy:
+  provider: heroku
+  api_key:
+    secure: MOriVJ2BaWWgtsaXrhLoogRh4V6WauozhW3nYIwVCvBIA/Pxpgf4IVLqxVadJDDmPbyJGhJeo0sskf8hZsU8HxAdediuposcQP//guPuGqfkXyLbWSZ/fYDT6QWxqZf88WJ1ynt+0zpTC5E1FHktlqR8rpn7vdLplY6WA45o++4=
+  app: fastsharing
+  on:
+    repo: g2minhle/FastSharing

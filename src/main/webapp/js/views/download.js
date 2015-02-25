@@ -28,10 +28,10 @@ function serverReply(reply) {
 		$("#div_GetFile").show();
 		$("#txt_FileName").html(fileName);
 		$("#txt_FileCode").html(fileCode);
-		var link = "/" + fileCode + "/";
+		var link = "/download/" + fileCode + "/";
 		$("#txt_FileLink").attr("href", link);
 		$("#txt_FileLink").html(var_contextPath + link);
-		link = "." + fileCode;
+		link = fileCode + "/";
 		$("#txt_FileName").attr("href", link);
 		$("#cmd_Download").attr("href", link);
 	}

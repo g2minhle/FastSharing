@@ -1,5 +1,3 @@
-![BuildStatus](https://travis-ci.org/g2minhle/FastSharing.svg?branch=master)
-
 FastSharing
 ===========
 

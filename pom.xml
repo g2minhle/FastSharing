@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.fastsharing</groupId>
 	<artifactId>fastsharing</artifactId>
+	<version>1.0.0-BUILD-SNAPSHOT</version> 
 	<name>FastSharing</name>
 	<packaging>war</packaging>	
 	<properties>
@@ -144,6 +145,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>${project.artifactId}</finalName>	
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

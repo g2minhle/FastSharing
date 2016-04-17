@@ -1,4 +1,3 @@
 language: java
-deploy:
-  provider: azure_web_apps
-  verbose: true  
+after_success:
+    "curl --ftp-create-dirs -T ./target/fastsharing.war -u $FTP_USER:$FTP_PASSWORD ftps://waws-prod-blu-043.ftp.azurewebsites.windows.net/site/wwwroot/webapps/ROOT.war"  
